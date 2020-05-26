@@ -14,7 +14,7 @@ namespace Einkaufsliste
         {
             InitializeComponent();
 
-            var mainPage = new NavigationPage(new MainPage());
+            var mainPage = new NavigationPage(Resolver.Resolve<MainPage>());
             var navService = DependencyService.Get<INavService>() as XamarinFormsNavService;
 
             navService.XamarinFormsNav = mainPage.Navigation;

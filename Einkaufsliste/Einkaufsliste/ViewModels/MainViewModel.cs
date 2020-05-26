@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using Einkaufsliste.Models;
+using Einkaufsliste.Repositories;
 using Einkaufsliste.Services;
 using Xamarin.Forms;
 
@@ -33,29 +34,34 @@ namespace Einkaufsliste.ViewModels
             LoadEntries();
         }
 
-        private void LoadEntries()
+        private async void LoadEntries()
         {
             GroceryLists.Clear();
-            GroceryLists.Add(new GroceryList()
+            foreach (var list in await Resolver.Resolve<GroceryListRepositorySQLite>().GetLists())
             {
-                Name = "Rewe",
-                Entries = new List<GroceryListEntry>
-                    {
-                        new GroceryListEntry()
-                        {
-                            Name = "Äpfel",
-                            Count = 5,
-                            Done = false,
-                        },
-                        new GroceryListEntry()
-                        {
-                            Name = "Birnen",
-                            Count = 10,
-                            Done = true,
-                        },
-                    }
+                GroceryLists.Add(list);
             }
-            );
+
+            //GroceryLists.Add(new GroceryList()
+            //{
+            //    Name = "Rewe",
+            //    Entries = new List<GroceryListEntry>
+            //        {
+            //            new GroceryListEntry()
+            //            {
+            //                Name = "Äpfel",
+            //                Count = 5,
+            //                Done = false,
+            //            },
+            //            new GroceryListEntry()
+            //            {
+            //                Name = "Birnen",
+            //                Count = 10,
+            //                Done = true,
+            //            },
+            //        }
+            //}
+            //);
         }
 
         public Command<GroceryList> ViewCommand => new Command<GroceryList>(async list => await NavService.NavigateTo<GroceryListViewModel, GroceryList>(list));
