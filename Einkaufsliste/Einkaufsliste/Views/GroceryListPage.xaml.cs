@@ -17,12 +17,7 @@ namespace Einkaufsliste.Views
         public GroceryListPage()
         {
             InitializeComponent();
-            BindingContext = new GroceryListViewModel(DependencyService.Get<INavService>());
-        }
-
-        private void AddEntry_OnClicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new NewGroceryListEntryPage());
+            BindingContext = Resolver.Resolve<GroceryListViewModel>();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Einkaufsliste.Repositories
         event EventHandler<GroceryList> OnListAdded;
         event EventHandler<GroceryList> OnListUpdated;
 
-        Task<List<GroceryList>> GetLists();
+        Task<IList<GroceryList>> GetLists();
         Task AddList(GroceryList list);
         Task UpdateList(GroceryList list);
         Task AddOrUpdate(GroceryList list);

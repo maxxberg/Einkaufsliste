@@ -8,10 +8,11 @@ namespace Einkaufsliste.Models
 {
     public class GroceryListEntry
     {
-        [PrimaryKey, AutoIncrement]
+        //[PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string Name { get; set; }
         public int Count { get; set; }
         public bool Done { get; set; }
+        public GroceryList List { get; set; }
     }
 }

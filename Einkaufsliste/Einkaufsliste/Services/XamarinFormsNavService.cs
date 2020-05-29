@@ -58,6 +58,10 @@ namespace Einkaufsliste.Services
             {
                 ((BaseViewModel<TParameter>)XamarinFormsNav.NavigationStack.Last().BindingContext).Init(parameter);
             }
+            else if (XamarinFormsNav.NavigationStack.Last().BindingContext is BaseValidationViewModel<TParameter>)
+            {
+                ((BaseValidationViewModel<TParameter>)XamarinFormsNav.NavigationStack.Last().BindingContext).Init(parameter);
+            }
         }
 
         public void RemoveLastView()

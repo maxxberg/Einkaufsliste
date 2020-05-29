@@ -22,7 +22,8 @@ namespace Einkaufsliste
         {
             InitializeComponent();
 
-            BindingContext = new MainViewModel(DependencyService.Get<INavService>());
+            BindingContext = Resolver.Resolve<MainViewModel>();
+            //MainViewModel(DependencyService.Get<INavService>());
         }
 
         protected override void OnAppearing()

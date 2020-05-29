@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using Einkaufsliste.Models;
@@ -47,7 +48,7 @@ namespace Einkaufsliste.Repositories
             }
         }
 
-        public async Task<List<GroceryList>> GetLists()
+        public async Task<IList<GroceryList>> GetLists()
         {
             await CreateConnection();
             return await _connection.Table<GroceryList>().ToListAsync();

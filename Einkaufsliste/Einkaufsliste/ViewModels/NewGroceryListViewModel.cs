@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Einkaufsliste.Models;
+using Einkaufsliste.Repositories;
 using Einkaufsliste.Services;
 using Xamarin.Forms;
 
@@ -47,7 +48,7 @@ namespace Einkaufsliste.ViewModels
                 Name = Name,
                 Entries = new List<GroceryListEntry>(),
             };
-            
+            await Resolver.Resolve<IGroceryListRepository>().AddList(list);
             await NavService.GoBack();
         }
 
